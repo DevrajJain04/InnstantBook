@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "401389043758",
+    "project_id": "innstantbook",
+    "storage_bucket": "innstantbook.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401389043758:android:5e23d0366d5ccde39f9fbf",
+        "android_client_info": {
+          "package_name": "com.example.innstantbook"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbvAwufBI4WYqAGEPWh6YcmxHX2_UCFgg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
