@@ -32,7 +32,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
-  Widget build(BuildContext context) async {
+  Widget build(BuildContext context) {
     return FutureBuilder(future: await Firebase.initializeApp() , builder: builder);
   }
 }
