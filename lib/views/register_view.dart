@@ -41,14 +41,24 @@ class _RegisterViewState extends State<RegisterView> {
             enableSuggestions: false,
             autocorrect: false,
             keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(hintText: 'enter ur email'),
+            decoration: const InputDecoration(
+              labelText: 'Email',
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+            ),
           ),
           TextField(
             controller: _password,
             obscureText: true,
             enableSuggestions: false,
             autocorrect: false,
-            decoration: const InputDecoration(hintText: 'enter ur password'),
+            decoration: const InputDecoration(
+              labelText: 'Password',
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+            ),
           ),
           TextButton(
             onPressed: () async {
@@ -94,7 +104,6 @@ class _RegisterViewState extends State<RegisterView> {
                     .pushNamedAndRemoveUntil(loginRoute, (route) => false);
               },
               child: const Text('Already registered? Login here')),
-              
         ],
       ),
     );

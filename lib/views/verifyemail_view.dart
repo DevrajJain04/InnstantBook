@@ -19,15 +19,31 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
       body: Column(
         children: [
           const Text(
-              "We've sent you and email verification.Please open it in order to verify your account"),
+            "We've sent you and email verification.Please open it in order to verify your account",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 15,
+                fontFamily: "poppins"),
+          ),
           const Text(
-              'If u haven\'t received a verification email yet,press the button below'),
+            'If u haven\'t received a verification email yet,press the button below',
+            textAlign: TextAlign.start,
+            style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 15,
+                fontFamily: "poppins"),
+          ),
           TextButton(
             onPressed: () async {
               final user = FirebaseAuth.instance.currentUser;
               await user?.sendEmailVerification();
             },
-            child: const Text('send email verification'),
+            child: SizedBox(
+                height: 15,
+                child: const Text(
+                  'send email verification',
+                )),
           ),
           TextButton(
             onPressed: () async {
@@ -41,7 +57,8 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
           ),
           TextButton(
               onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(context, loginRoute, (route) => false);
+                Navigator.pushNamedAndRemoveUntil(
+                    context, loginRoute, (route) => false);
               },
               child: Text('Verified yourself? Return to Login Page'))
         ],

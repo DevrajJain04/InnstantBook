@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:innstantbook/views/login_view.dart';
 import 'package:innstantbook/constants/routes.dart';
+import 'package:innstantbook/views/main_view.dart';
 import 'package:innstantbook/views/register_view.dart';
 import 'package:innstantbook/views/verifyemail_view.dart';
 import 'firebase_options.dart';
@@ -22,7 +23,7 @@ void main() {
       routes: {
         loginRoute: (context) => const LoginView(),
         registerRoute: (context) => const RegisterView(),
-        notesRoute: (context) => const NotesView(),
+        mainRoute: (context) => const MainView(),
         verifyEmailRoute: (context) => const VerifyEmailView(),
       },
     ),
@@ -44,7 +45,7 @@ class HomePage extends StatelessWidget {
               final user = FirebaseAuth.instance.currentUser;
               if (user != null) {
                 if (user.emailVerified) {
-                  return const NotesView();
+                  return const MainView();
                 } else {
                   return const VerifyEmailView();
                 }
@@ -55,52 +56,6 @@ class HomePage extends StatelessWidget {
               return const CircularProgressIndicator();
           }
         });
-  }
-}
-
-enum MenuAction { logout }
-
-class NotesView extends StatefulWidget {
-  const NotesView({super.key});
-
-  @override
-  State<NotesView> createState() => _NotesViewState();
-}
-
-class _NotesViewState extends State<NotesView> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Main UI'),
-        actions: [
-          PopupMenuButton<MenuAction>(
-            onSelected: (value) async {
-              switch (value) {
-                case MenuAction.logout:
-                  final shouldLogout = await showLogOutDialog(context);
-                  if (shouldLogout) {
-                    await FirebaseAuth.instance.signOut();
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                      loginRoute,
-                      (_) => false,
-                    );
-                  }
-              }
-            },
-            itemBuilder: (context) {
-              return const [
-                PopupMenuItem<MenuAction>(
-                  value: MenuAction.logout,
-                  child: Text('Log out'),
-                ),
-              ];
-            },
-          )
-        ],
-      ),
-      body: const Text('Hello World'),
-    );
   }
 }
 
