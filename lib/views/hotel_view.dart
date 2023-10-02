@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class HotelDesc extends StatelessWidget {
   final item;
-  HotelDesc({required this.item});
+  const HotelDesc({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +14,7 @@ class HotelDesc extends StatelessWidget {
         child: Column(
           children: [
             
+
           ],
         ),
       ),

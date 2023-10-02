@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:innstantbook/views/login_view.dart';
 import 'package:innstantbook/constants/routes.dart';
 import 'package:innstantbook/views/main_view.dart';
+import 'package:innstantbook/views/profile_page.dart';
 import 'package:innstantbook/views/register_view.dart';
 import 'package:innstantbook/views/verifyemail_view.dart';
 import 'firebase_options.dart';
@@ -25,6 +26,7 @@ void main() {
         registerRoute: (context) => const RegisterView(),
         mainRoute: (context) => const MainView(),
         verifyEmailRoute: (context) => const VerifyEmailView(),
+        profilePage:(context) => ProfilePageView(),
       },
     ),
   );

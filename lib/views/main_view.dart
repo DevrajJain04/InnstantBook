@@ -51,6 +51,9 @@ class MainViewState extends State<MainView> {
                       (_) => false,
                     );
                   }
+                  break;
+                case MenuAction.profile:
+                  Navigator.of(context).pushNamed(profilePage);
               }
             },
             itemBuilder: (context) {
@@ -82,14 +85,31 @@ class MainViewState extends State<MainView> {
             SizedBox(
               height: 10,
             ),
-            Text(
-              destination,
-              style: TextStyle(fontSize: 20),
+            TextButton(
+              child: Text('Go to $destination'),
+              onPressed: () {},
             ),
+            Card(
+                child: Container(
+              height: 100,
+              child: PageView.builder(
+                itemCount: places.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    color: Color.fromRGBO(201, 132, 238, 0),
+                    child: Center(
+                        child: Text(
+                      places[index],
+                      style: TextStyle(color: Colors.purple),
+                    )),
+                  );
+                },
+              ),
+            )),
             SizedBox(
               child: Text(
                 'Popular Hotels',
-                style: TextStyle(fontSize: 50),
+                style: TextStyle(fontSize: 30),
               ),
             ),
             Flexible(
@@ -104,7 +124,12 @@ class MainViewState extends State<MainView> {
                     width: 150,
                     child: ListTile(
                       title: Text(hotelName),
-                      subtitle: Text('Book Now'),
+                      subtitle: Row(
+                        children: [
+                          Icon(Icons.star),
+                          Text('Book Now'),
+                        ],
+                      ),
                       onTap: () {
                         hotelName = hotelNames[index];
                         Navigator.of(context).push(MaterialPageRoute(
@@ -115,21 +140,9 @@ class MainViewState extends State<MainView> {
                 },
               ),
             ),
-            SizedBox(
-              height: 300,
-            ),
-            Card(
-                child: Container(
-              height: 100,
-              child: PageView.builder(
-                itemCount: places.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    child: Center(child: Text(places[index])),
-                  );
-                },
-              ),
-            ))
+            // SizedBox(
+            //   height: 300,
+            // ),
           ],
         ),
       ),
