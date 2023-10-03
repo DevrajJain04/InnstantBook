@@ -12,7 +12,8 @@ class ProfilePageView extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Text('Your E-Mail: \n ' '$email'),
+          Text('Your E-Mail: \n ' '$email',style: TextStyle(fontStyle: FontStyle.italic),),
+
         ],
       ),
     );

@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:innstantbook/constants/enums.dart';
 import 'package:innstantbook/constants/routes.dart';
-import 'package:innstantbook/main.dart';
+import 'package:innstantbook/utilities/show_logout_dialog.dart';
 import 'package:innstantbook/views/hotel_view.dart';
 
 class MainView extends StatefulWidget {
@@ -62,6 +62,10 @@ class MainViewState extends State<MainView> {
                   value: MenuAction.logout,
                   child: Text('Log out'),
                 ),
+                PopupMenuItem<MenuAction>(
+                  child: Text('MyProfile'),
+                  value: MenuAction.profile,
+                )
               ];
             },
           )

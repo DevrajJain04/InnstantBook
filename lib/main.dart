@@ -26,7 +26,7 @@ void main() {
         registerRoute: (context) => const RegisterView(),
         mainRoute: (context) => const MainView(),
         verifyEmailRoute: (context) => const VerifyEmailView(),
-        profilePage:(context) => ProfilePageView(),
+        profilePage: (context) => ProfilePageView(),
       },
     ),
   );
@@ -55,33 +55,10 @@ class HomePage extends StatelessWidget {
                 return const LoginView();
               }
             default:
-              return const CircularProgressIndicator();
+              return const CircularProgressIndicator.adaptive(
+                strokeWidth: 3,
+              );
           }
         });
   }
-}
-
-Future<bool> showLogOutDialog(BuildContext context) {
-  return showDialog<bool>(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text('sign out'),
-          content: const Text('are u sure ?'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(false);
-              },
-              child: const Text('cancel'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(true);
-              },
-              child: const Text('Log out'),
-            ),
-          ],
-        );
-      }).then((value) => value ?? false);
 }
