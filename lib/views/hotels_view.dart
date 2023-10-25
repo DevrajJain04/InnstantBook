@@ -3,16 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:innstantbook/constants/enums.dart';
 import 'package:innstantbook/constants/routes.dart';
 import 'package:innstantbook/utilities/show_logout_dialog.dart';
-import 'package:innstantbook/views/hotel_view.dart';
+import 'package:innstantbook/views/hotel_detail_view.dart';
+import 'package:innstantbook/views/login_view.dart';
+import 'package:innstantbook/views/profile_page.dart';
 
-class MainView extends StatefulWidget {
-  const MainView({super.key});
+class HotelView extends StatefulWidget {
+  const HotelView({super.key});
 
   @override
-  State<MainView> createState() => MainViewState();
+  State<HotelView> createState() => HotelViewState();
 }
 
-class MainViewState extends State<MainView> {
+class HotelViewState extends State<HotelView> {
   late final destController = TextEditingController();
   late var destination = destController.text;
   late var hotelName;
@@ -129,7 +131,7 @@ class MainViewState extends State<MainView> {
                     child: ListTile(
                       title: Text(hotelName),
                       subtitle: Row(
-                        children: [
+                        children: const [
                           Icon(Icons.star),
                           Text('Book Now'),
                         ],
@@ -148,6 +150,44 @@ class MainViewState extends State<MainView> {
             //   height: 300,
             // ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+
+class NavBar extends StatefulWidget {
+  const NavBar({super.key});
+
+  @override
+  State<NavBar> createState() => _NavBarState();
+}
+
+class _NavBarState extends State<NavBar> {
+  int currentPageIndex = 0;
+  final routes = [HotelView(),ProfilePageView(),];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: routes[currentPageIndex],
+      bottomNavigationBar: NavigationBarTheme(
+        data: NavigationBarThemeData(
+          indicatorColor: Colors.purple[400],
+        ),
+        child: NavigationBar(
+          destinations: const [
+            // NavigationDestination(icon: Icon(Icons.home_filled), label: 'Main'),
+            NavigationDestination(icon: Icon(Icons.hotel), label: 'hotels'),
+            NavigationDestination(icon: Icon(Icons.person), label: 'profile'),
+          ],
+          selectedIndex: currentPageIndex,
+          onDestinationSelected: (index) {
+            setState(() {
+              currentPageIndex = index;
+            });
+          },
         ),
       ),
     );

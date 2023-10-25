@@ -8,12 +8,11 @@ class ProfilePageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Your Profile'),
+        title: const Text('Your Profile'),
       ),
       body: Column(
         children: [
-          Text('Your E-Mail: \n ' '$email',style: TextStyle(fontStyle: FontStyle.italic),),
-
+          Text('Your E-Mail: \n ' '$email',style: const TextStyle(fontStyle: FontStyle.italic),),
         ],
       ),
     );

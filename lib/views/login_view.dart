@@ -75,7 +75,7 @@ class _LoginViewState extends State<LoginView> {
                     password: password,
                   );
                   Navigator.of(context).pushNamed(
-                    mainRoute,
+                    navbar,
                   );
                 } on FirebaseAuthException catch (e) {
                   if (e.code == 'user-not-found') {

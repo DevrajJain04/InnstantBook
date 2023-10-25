@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:innstantbook/views/login_view.dart';
 import 'package:innstantbook/constants/routes.dart';
-import 'package:innstantbook/views/main_view.dart';
+import 'package:innstantbook/views/hotels_view.dart';
 import 'package:innstantbook/views/profile_page.dart';
 import 'package:innstantbook/views/register_view.dart';
 import 'package:innstantbook/views/verifyemail_view.dart';
@@ -22,11 +22,13 @@ void main() {
       ),
       home: const HomePage(),
       routes: {
+        homePage: (context) => const HomePage(),
         loginRoute: (context) => const LoginView(),
         registerRoute: (context) => const RegisterView(),
-        mainRoute: (context) => const MainView(),
+        mainRoute: (context) => const HotelView(),
         verifyEmailRoute: (context) => const VerifyEmailView(),
         profilePage: (context) => ProfilePageView(),
+        navbar:(context) => const NavBar()
       },
     ),
   );
@@ -47,7 +49,7 @@ class HomePage extends StatelessWidget {
               final user = FirebaseAuth.instance.currentUser;
               if (user != null) {
                 if (user.emailVerified) {
-                  return const MainView();
+                  return const HotelView();
                 } else {
                   return const VerifyEmailView();
                 }
@@ -55,9 +57,8 @@ class HomePage extends StatelessWidget {
                 return const LoginView();
               }
             default:
-              return const CircularProgressIndicator.adaptive(
-                strokeWidth: 3,
-              );
+              return const SizedBox(
+                  height: 1, width: 1, child: CircularProgressIndicator());
           }
         });
   }
