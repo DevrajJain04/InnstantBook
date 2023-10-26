@@ -4,8 +4,6 @@ import 'package:innstantbook/constants/enums.dart';
 import 'package:innstantbook/constants/routes.dart';
 import 'package:innstantbook/utilities/show_logout_dialog.dart';
 import 'package:innstantbook/views/hotel_detail_view.dart';
-import 'package:innstantbook/views/login_view.dart';
-import 'package:innstantbook/views/profile_page.dart';
 
 class HotelView extends StatefulWidget {
   const HotelView({super.key});
@@ -150,44 +148,6 @@ class HotelViewState extends State<HotelView> {
             //   height: 300,
             // ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-
-class NavBar extends StatefulWidget {
-  const NavBar({super.key});
-
-  @override
-  State<NavBar> createState() => _NavBarState();
-}
-
-class _NavBarState extends State<NavBar> {
-  int currentPageIndex = 0;
-  final routes = [HotelView(),ProfilePageView(),];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: routes[currentPageIndex],
-      bottomNavigationBar: NavigationBarTheme(
-        data: NavigationBarThemeData(
-          indicatorColor: Colors.purple[400],
-        ),
-        child: NavigationBar(
-          destinations: const [
-            // NavigationDestination(icon: Icon(Icons.home_filled), label: 'Main'),
-            NavigationDestination(icon: Icon(Icons.hotel), label: 'hotels'),
-            NavigationDestination(icon: Icon(Icons.person), label: 'profile'),
-          ],
-          selectedIndex: currentPageIndex,
-          onDestinationSelected: (index) {
-            setState(() {
-              currentPageIndex = index;
-            });
-          },
         ),
       ),
     );

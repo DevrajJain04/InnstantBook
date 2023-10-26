@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:innstantbook/utilities/navbar.dart';
 import 'package:innstantbook/views/login_view.dart';
 import 'package:innstantbook/constants/routes.dart';
 import 'package:innstantbook/views/hotels_view.dart';
@@ -49,7 +50,7 @@ class HomePage extends StatelessWidget {
               final user = FirebaseAuth.instance.currentUser;
               if (user != null) {
                 if (user.emailVerified) {
-                  return const HotelView();
+                  return const NavBar();
                 } else {
                   return const VerifyEmailView();
                 }
@@ -57,8 +58,7 @@ class HomePage extends StatelessWidget {
                 return const LoginView();
               }
             default:
-              return const SizedBox(
-                  height: 1, width: 1, child: CircularProgressIndicator());
+              return const CircularProgressIndicator();
           }
         });
   }

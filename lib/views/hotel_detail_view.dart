@@ -12,10 +12,7 @@ class HotelDesc extends StatelessWidget {
       ),
       body: Container(
         child: Column(
-          children: [
-            
-
-          ],
+          children: [],
         ),
       ),
     );

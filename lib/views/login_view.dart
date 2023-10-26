@@ -38,30 +38,36 @@ class _LoginViewState extends State<LoginView> {
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: Column(
           children: [
-            TextField(
-              controller: _email,
-              enableSuggestions: false,
-              autocorrect: false,
-              keyboardType: TextInputType.emailAddress,
-              decoration: const InputDecoration(
-                labelText: 'Email',
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: _email,
+                enableSuggestions: false,
+                autocorrect: false,
+                keyboardType: TextInputType.emailAddress,
+                decoration: const InputDecoration(
+                  labelText: 'Email',
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
                 ),
               ),
             ),
             SizedBox(
               height: 5,
             ),
-            TextField(
-              controller: _password,
-              obscureText: true,
-              enableSuggestions: false,
-              autocorrect: false,
-              decoration: const InputDecoration(
-                labelText: 'Password',
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: _password,
+                obscureText: true,
+                enableSuggestions: false,
+                autocorrect: false,
+                decoration: const InputDecoration(
+                  labelText: 'Password',
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
                 ),
               ),
             ),
