@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:innstantbook/utilities/navbar.dart';
 import 'package:innstantbook/views/login_view.dart';
 import 'package:innstantbook/constants/routes.dart';
-import 'package:innstantbook/views/hotels_view.dart';
+import 'package:innstantbook/views/explore.dart';
 import 'package:innstantbook/views/profile_page.dart';
 import 'package:innstantbook/views/register_view.dart';
 import 'package:innstantbook/views/verifyemail_view.dart';
@@ -26,7 +26,7 @@ void main() {
         homePage: (context) => const HomePage(),
         loginRoute: (context) => const LoginView(),
         registerRoute: (context) => const RegisterView(),
-        mainRoute: (context) => const HotelView(),
+        mainRoute: (context) => const ExplorePage(),
         verifyEmailRoute: (context) => const VerifyEmailView(),
         profilePage: (context) => ProfilePageView(),
         navbar:(context) => const NavBar()
