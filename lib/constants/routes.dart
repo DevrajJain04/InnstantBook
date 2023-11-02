@@ -5,3 +5,4 @@ const mainRoute = '/main/';
 const verifyEmailRoute = '/verify-email/';
 const profilePage = '/profile/';
 const navbar = '/navBar/';
+const booking = '/booking/';

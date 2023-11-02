@@ -23,6 +23,7 @@ class _NavBarState extends State<NavBar> {
           indicatorColor: Colors.purple[400],
         ),
         child: NavigationBar(
+          elevation: 10,
           destinations: const [
             NavigationDestination(icon: Icon(Icons.hotel), label: 'hotels'),
             NavigationDestination(icon: Icon(Icons.explore), label: 'explore'),

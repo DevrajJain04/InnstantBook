@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:innstantbook/constants/enums.dart';
+import 'package:innstantbook/constants/routes.dart';
 
 class HotelDesc extends StatefulWidget {
   final item;
@@ -56,8 +57,19 @@ class _HotelDescState extends State<HotelDesc> {
                   child: Text("3"),
                 )
               ],
-              // icon: Icon(Icons.double_arrow),
-              // iconSize: 50,
+            ),
+            FloatingActionButton(
+              elevation: 5,
+              backgroundColor: Colors.purple[300],
+              onPressed: () {
+                Navigator.of(context).pushNamed(booking);
+              },
+              child: Text('Confirm Booking'),
+            ),
+            Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(image: AssetImage("assets/logo.png")),
+              ),
             )
           ],
         ),

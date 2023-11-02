@@ -54,8 +54,8 @@ class ExplorePageState extends State<ExplorePage> {
                   child: Text('Log out'),
                 ),
                 PopupMenuItem<MenuAction>(
-                  child: Text('MyProfile'),
                   value: MenuAction.profile,
+                  child: Text('MyProfile'),
                 )
               ];
             },
@@ -77,6 +77,7 @@ class ExplorePageState extends State<ExplorePage> {
                 children: const [
                   Icon(Icons.star),
                   Text('Book Now'),
+                  
                 ],
               ),
               onTap: () {

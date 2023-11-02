@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:innstantbook/utilities/showHotel.dart';
 
 class HotelSearch extends StatefulWidget {
   const HotelSearch({super.key});
@@ -8,18 +9,6 @@ class HotelSearch extends StatefulWidget {
 }
 
 class _HotelSearchState extends State<HotelSearch> {
-  late final destController = TextEditingController();
-  late var destination = destController.text;
-
-  List places = [
-    'Mumbai',
-    'Delhi',
-    'Ahmedabad',
-    'Pune',
-    'Bangalore',
-    'Chennai'
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,43 +17,59 @@ class _HotelSearchState extends State<HotelSearch> {
       ),
       body: Column(
         children: [
-          Text(
-            "Select Your Destination",
-            style: TextStyle(fontSize: 24),
-          ),
-          TextField(
-            controller: destController,
-            decoration: InputDecoration(hintText: "Enter City,State,Country"),
-            onChanged: (value) {
-              setState(() {
-                destination = value;
-              });
-            },
+          SizedBox(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  const SizedBox(
+                    child: Icon(
+                      Icons.location_pin,
+                      color: Colors.red,
+                    ),
+                  ),
+                  SizedBox(
+                    child: Text(
+                      'In Your City !!',
+                      style: TextStyle(
+                        fontSize: 16,
+                        decoration: TextDecoration.underline
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
           SizedBox(
-            height: 10,
+            height: 80,
           ),
-          TextButton(
-            child: Text('Go to $destination'),
-            onPressed: () {},
+          SizedBox(
+            child: Card(
+              elevation: 0.0,
+              child: Text(
+                'Top Recommended Hotels ',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
           ),
-          Card(
-              child: Container(
-            height: 100,
-            child: PageView.builder(
-              itemCount: places.length,
+          SizedBox(
+            height: 50,
+          ),
+          SizedBox(
+            height: 350,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 15,
               itemBuilder: (context, index) {
-                return Card(
-                  color: Color.fromRGBO(201, 132, 238, 0),
-                  child: Center(
-                      child: Text(
-                    places[index],
-                    style: TextStyle(color: Colors.purple),
-                  )),
-                );
+                return showHotel(index: index);
               },
             ),
-          )),
+          )
         ],
       ),
     );

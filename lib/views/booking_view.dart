@@ -9,7 +9,12 @@ class BookingView extends StatefulWidget {
 
 class _BookingViewState extends State<BookingView> {
   @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Payment Methods Available'),
+      ),
+      body: Card(),
+    );
   }
 }

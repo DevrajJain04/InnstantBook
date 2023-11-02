@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:innstantbook/utilities/navbar.dart';
+import 'package:innstantbook/views/booking_view.dart';
 import 'package:innstantbook/views/login_view.dart';
 import 'package:innstantbook/constants/routes.dart';
 import 'package:innstantbook/views/explore.dart';
@@ -29,7 +30,8 @@ void main() {
         mainRoute: (context) => const ExplorePage(),
         verifyEmailRoute: (context) => const VerifyEmailView(),
         profilePage: (context) => ProfilePageView(),
-        navbar:(context) => const NavBar()
+        navbar:(context) => const NavBar(),
+        booking :(context) => const BookingView()
       },
     ),
   );
