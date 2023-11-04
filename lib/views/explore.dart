@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:innstantbook/constants/enums.dart';
+import 'package:innstantbook/constants/hotel_list.dart';
 import 'package:innstantbook/constants/routes.dart';
 import 'package:innstantbook/utilities/show_logout_dialog.dart';
 import 'package:innstantbook/views/hotel_detail_view.dart';
@@ -14,15 +15,6 @@ class ExplorePage extends StatefulWidget {
 
 class ExplorePageState extends State<ExplorePage> {
   late var hotelName;
-
-  List hotelNames = [
-    'J.W. Mariot',
-    'Taj Hotel',
-    'Le Meridian',
-    'Westin',
-    'Deltin',
-    ''
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -68,22 +60,25 @@ class ExplorePageState extends State<ExplorePage> {
         child: ListView.builder(
           shrinkWrap: true,
           scrollDirection: Axis.vertical,
-          itemCount: hotelNames.length,
+          itemCount: hotelnames.length,
           itemBuilder: (context, index) {
-            hotelName = hotelNames[index];
+            hotelName = hotelnames[index];
             return ListTile(
               title: Text(hotelName),
               subtitle: Row(
                 children: const [
                   Icon(Icons.star),
                   Text('Book Now'),
-                  
                 ],
               ),
               onTap: () {
-                hotelName = hotelNames[index];
+                hotelName = hotelnames[index];
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => HotelDesc(item: hotelName)));
+                    builder: (context) => HotelDesc(
+                          item1: hotelName,
+                          item2: assets[index],
+                          item3: hoteldesc[index],
+                        )));
               },
             );
           },

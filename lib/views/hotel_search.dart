@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:innstantbook/utilities/showHotel.dart';
+import 'package:innstantbook/utilities/ShowHotel.dart';
 
 class HotelSearch extends StatefulWidget {
   const HotelSearch({super.key});
@@ -17,6 +17,15 @@ class _HotelSearchState extends State<HotelSearch> {
       ),
       body: Column(
         children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              decoration: InputDecoration(
+                  label: Text('Enter Your City'),
+                  border: OutlineInputBorder(
+                      gapPadding: 5, borderRadius: BorderRadius.circular(8))),
+            ),
+          ),
           SizedBox(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -33,16 +42,12 @@ class _HotelSearchState extends State<HotelSearch> {
                       'In Your City !!',
                       style: TextStyle(
                         fontSize: 16,
-                        decoration: TextDecoration.underline
                       ),
                     ),
                   ),
                 ],
               ),
             ),
-          ),
-          SizedBox(
-            height: 80,
           ),
           SizedBox(
             child: Card(
@@ -58,15 +63,12 @@ class _HotelSearchState extends State<HotelSearch> {
             ),
           ),
           SizedBox(
-            height: 50,
-          ),
-          SizedBox(
             height: 350,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: 15,
               itemBuilder: (context, index) {
-                return showHotel(index: index);
+                return ShowHotel(index: index);
               },
             ),
           )
