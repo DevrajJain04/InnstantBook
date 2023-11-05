@@ -31,12 +31,12 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('login'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: Column(
+      // appBar: AppBar(
+      //   title: const Text('login'),
+      // ),
+      body: Stack(alignment: Alignment.center, children: [
+        Image.asset('assets/Images/1.jpg'),
+        Column(
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -107,18 +107,33 @@ class _LoginViewState extends State<LoginView> {
                   );
                 }
               },
-              child: const Text('Login'),
+              style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Colors.blue[400])),
+              child: const Text(
+                'Login',
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+              ),
+            ),
+            SizedBox(
+              height: 5,
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context)
                     .pushNamedAndRemoveUntil(registerRoute, (route) => false);
               },
-              child: const Text('not registered ? register here'),
+              style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Colors.blue[400])),
+              child: const Text(
+                'not registered ? register here',
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+              ),
             )
           ],
         ),
-      ),
+      ]),
     );
   }
 }
