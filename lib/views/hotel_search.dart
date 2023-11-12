@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:innstantbook/utilities/ShowHotel.dart';
+import 'package:innstantbook/constants/hotel_list.dart';
+import 'package:innstantbook/utilities/show_hotel.dart';
 
 class HotelSearch extends StatefulWidget {
   const HotelSearch({super.key});
@@ -66,7 +67,7 @@ class _HotelSearchState extends State<HotelSearch> {
             height: 350,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 15,
+              itemCount: hotels.length,
               itemBuilder: (context, index) {
                 return ShowHotel(index: index);
               },

@@ -1,21 +1,5 @@
-List hotelnames = [
-  "Grand Opulence Hotel",
-  "Seaside Serenity Resort",
-  "Mountain View Lodge",
-  "Urban Oasis Retreat",
-  "Historic Elegance Inn",
-  "Tropical Paradise Resort",
-  "Desert Mirage Oasis",
-  "Skyline Suites Hotel",
-  "Alpine Haven Chalet",
-  "Island Hideaway Resort",
-  "Rustic Retreat Lodge",
-  "City Lights View Hotel",
-  "Coastal Elegance Resort",
-  "Wilderness Haven Camp",
-  "Tranquil Vineyard Inn",
-];
-
+List hotelnames = [];
+List<Map<String, dynamic>> hotels = [];
 List hoteldesc = [
   "Grand Opulence Hotel offers opulent suites with breathtaking city views, a rooftop pool, and fine dining. Ideal for business travelers and tourists.",
   "Seaside Serenity Resort offers beachfront bungalows, a spa, and water sports for a tranquil escape.",

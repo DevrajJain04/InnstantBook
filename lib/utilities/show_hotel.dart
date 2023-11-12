@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:innstantbook/constants/hotel_list.dart';
+import 'package:innstantbook/utilities/fetch_data.dart';
 import 'package:innstantbook/views/hotel_detail_view.dart';
 
 class ShowHotel extends StatefulWidget {
@@ -12,6 +13,13 @@ class ShowHotel extends StatefulWidget {
 
 class _ShowHotelState extends State<ShowHotel> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchData();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Card(
       child: SizedBox(
@@ -22,9 +30,9 @@ class _ShowHotelState extends State<ShowHotel> {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => HotelDesc(
-                  item1: hotelnames[widget.index],
-                  item2: assets[widget.index],
-                  item3: hoteldesc[widget.index],
+                  name: hotels[widget.index]['name'],
+                  image: assets[widget.index],
+                  description: hoteldesc[widget.index],
                 ),
               ),
             );
@@ -32,7 +40,7 @@ class _ShowHotelState extends State<ShowHotel> {
           child: Column(
             children: [
               Text(
-                hotelnames[widget.index],
+                hotels[widget.index]['name'],
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,

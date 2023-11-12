@@ -60,11 +60,11 @@ class ExplorePageState extends State<ExplorePage> {
         child: ListView.builder(
           shrinkWrap: true,
           scrollDirection: Axis.vertical,
-          itemCount: hotelnames.length,
+          itemCount: hotels.length,
           itemBuilder: (context, index) {
-            hotelName = hotelnames[index];
+          //   hotelName = hotelnames[index];
             return ListTile(
-              title: Text(hotelName),
+              title: Text(hotels[index]['name']),
               subtitle: Row(
                 children: const [
                   Icon(Icons.star),
@@ -72,12 +72,12 @@ class ExplorePageState extends State<ExplorePage> {
                 ],
               ),
               onTap: () {
-                hotelName = hotelnames[index];
+                // hotelName = hotelnames[index];
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => HotelDesc(
-                          item1: hotelName,
-                          item2: assets[index],
-                          item3: hoteldesc[index],
+                          name: hotels[index]['name'],
+                          image: assets[index],
+                          description: hoteldesc[index],
                         )));
               },
             );

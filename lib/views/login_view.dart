@@ -53,7 +53,7 @@ class _LoginViewState extends State<LoginView> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Padding(
@@ -80,9 +80,7 @@ class _LoginViewState extends State<LoginView> {
                     email: email,
                     password: password,
                   );
-                  Navigator.of(context).pushNamed(
-                    navbar,
-                  );
+                  Navigator.pushNamed(context, navbar);
                 } on FirebaseAuthException catch (e) {
                   if (e.code == 'user-not-found') {
                     await showErrorDialog(
@@ -90,21 +88,13 @@ class _LoginViewState extends State<LoginView> {
                       'user not found',
                     );
                   } else if (e.code == 'wrong-password') {
-                    await showErrorDialog(
-                      context,
-                      'wrong password entered . please check and try again',
-                    );
+                    await showErrorDialog(context,
+                        'wrong password entered . please check and try again');
                   } else {
-                    await showErrorDialog(
-                      context,
-                      'Error : ${e.code}',
-                    );
+                    await showErrorDialog(context, 'Error : ${e.code}');
                   }
                 } catch (e) {
-                  await showErrorDialog(
-                    context,
-                    e.toString(),
-                  );
+                  await showErrorDialog(context, e.toString());
                 }
               },
               style: ButtonStyle(
@@ -116,7 +106,7 @@ class _LoginViewState extends State<LoginView> {
               ),
             ),
             SizedBox(
-              height: 5,
+              height: 5
             ),
             TextButton(
               onPressed: () {

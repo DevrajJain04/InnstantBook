@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:innstantbook/utilities/fetch_data.dart';
 import 'package:innstantbook/views/hotel_search.dart';
 import 'package:innstantbook/views/explore.dart';
 import 'package:innstantbook/views/profile_page.dart';
@@ -12,7 +13,17 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   int currentPageIndex = 0;
-  final routes = [HotelSearch(),ExplorePage(),ProfilePageView(),];
+  final routes = [
+    const HotelSearch(),
+    const ExplorePage(),
+    ProfilePageView(),
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
 
   @override
   Widget build(BuildContext context) {
