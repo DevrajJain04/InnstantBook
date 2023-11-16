@@ -16,64 +16,66 @@ class _HotelSearchState extends State<HotelSearch> {
       appBar: AppBar(
         title: Text("Explore Luxurious Hotels And Inns"),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                  label: Text('Enter Your City'),
-                  border: OutlineInputBorder(
-                      gapPadding: 5, borderRadius: BorderRadius.circular(8))),
-            ),
-          ),
-          SizedBox(
-            child: Padding(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  const SizedBox(
-                    child: Icon(
-                      Icons.location_pin,
-                      color: Colors.red,
-                    ),
-                  ),
-                  SizedBox(
-                    child: Text(
-                      'In Your City !!',
-                      style: TextStyle(
-                        fontSize: 16,
+              child: TextField(
+                decoration: InputDecoration(
+                    label: Text('Enter Your City'),
+                    border: OutlineInputBorder(
+                        gapPadding: 5, borderRadius: BorderRadius.circular(8))),
+              ),
+            ),
+            SizedBox(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    const SizedBox(
+                      child: Icon(
+                        Icons.location_pin,
+                        color: Colors.red,
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(
-            child: Card(
-              elevation: 0.0,
-              child: Text(
-                'Top Recommended Hotels ',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24,
+                    SizedBox(
+                      child: Text(
+                        'In Your City !!',
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                textAlign: TextAlign.center,
               ),
             ),
-          ),
-          SizedBox(
-            height: 350,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: hotels.length,
-              itemBuilder: (context, index) {
-                return ShowHotel(index: index);
-              },
+            SizedBox(
+              child: Card(
+                elevation: 0.0,
+                child: Text(
+                  'Top Recommended Hotels ',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
             ),
-          )
-        ],
+            SizedBox(
+              height: 350,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: hotels.length,
+                itemBuilder: (context, index) {
+                  return ShowHotel(index: index);
+                },
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

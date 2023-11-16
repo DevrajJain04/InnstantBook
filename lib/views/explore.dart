@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:innstantbook/constants/enums.dart';
@@ -14,13 +15,28 @@ class ExplorePage extends StatefulWidget {
 }
 
 class ExplorePageState extends State<ExplorePage> {
-  late var hotelName;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('InnstantBook'),
+        title: InkWell(
+          child: Card(
+            elevation: 2,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: const Text(
+                'InnstantBook',
+                style: TextStyle(fontSize: 15),
+              ),
+            ),
+          ),
+          onTap: () {
+            Navigator.of(context).initState();
+            setState(() {
+              currentPageIndex = 0;
+            });
+          },
+        ),
         actions: [
           PopupMenuButton<MenuAction>(
             onSelected: (value) async {
@@ -62,22 +78,27 @@ class ExplorePageState extends State<ExplorePage> {
           scrollDirection: Axis.vertical,
           itemCount: hotels.length,
           itemBuilder: (context, index) {
-          //   hotelName = hotelnames[index];
+            var hotelThumbnail =
+                hotels[index]['photo']['images']['thumbnail']['url'];
             return ListTile(
+              leading: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image(image: CachedNetworkImageProvider(hotelThumbnail),),
+              ),
               title: Text(hotels[index]['name']),
-              subtitle: Row(
-                children: const [
+              subtitle: const Row(
+                children: [
                   Icon(Icons.star),
                   Text('Book Now'),
                 ],
               ),
               onTap: () {
-                // hotelName = hotelnames[index];
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => HotelDesc(
                           name: hotels[index]['name'],
-                          image: assets[index],
-                          description: hoteldesc[index],
+                          image: hotels[index]['photo']['images']['large']
+                              ['url'],
+                          description: hotels[index]['description'],
                         )));
               },
             );

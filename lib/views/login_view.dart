@@ -35,7 +35,12 @@ class _LoginViewState extends State<LoginView> {
       //   title: const Text('login'),
       // ),
       body: Stack(alignment: Alignment.center, children: [
-        Image.asset('assets/Images/1.jpg'),
+        Image.asset(
+          'assets/Images/1.jpg',
+          width: double.infinity,
+          height: double.infinity,
+          fit: BoxFit.cover,
+        ),
         Column(
           children: [
             Padding(
@@ -72,43 +77,6 @@ class _LoginViewState extends State<LoginView> {
               ),
             ),
             TextButton(
-              onPressed: () async {
-                final email = _email.text;
-                final password = _password.text;
-                try {
-                  await FirebaseAuth.instance.signInWithEmailAndPassword(
-                    email: email,
-                    password: password,
-                  );
-                  Navigator.pushNamed(context, navbar);
-                } on FirebaseAuthException catch (e) {
-                  if (e.code == 'user-not-found') {
-                    await showErrorDialog(
-                      context,
-                      'user not found',
-                    );
-                  } else if (e.code == 'wrong-password') {
-                    await showErrorDialog(context,
-                        'wrong password entered . please check and try again');
-                  } else {
-                    await showErrorDialog(context, 'Error : ${e.code}');
-                  }
-                } catch (e) {
-                  await showErrorDialog(context, e.toString());
-                }
-              },
-              style: ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(Colors.blue[400])),
-              child: const Text(
-                'Login',
-                style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-              ),
-            ),
-            SizedBox(
-              height: 5
-            ),
-            TextButton(
               onPressed: () {
                 Navigator.of(context)
                     .pushNamedAndRemoveUntil(registerRoute, (route) => false);
@@ -120,7 +88,52 @@ class _LoginViewState extends State<LoginView> {
                 style:
                     TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
               ),
-            )
+            ),
+            SizedBox(height: 5),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      final email = _email.text;
+                      final password = _password.text;
+                      try {
+                        await FirebaseAuth.instance.signInWithEmailAndPassword(
+                          email: email,
+                          password: password,
+                        );
+                        Navigator.pushNamed(context, navbar);
+                      } on FirebaseAuthException catch (e) {
+                        if (e.code == 'user-not-found') {
+                          await showErrorDialog(
+                            context,
+                            'user not found',
+                          );
+                        } else if (e.code == 'wrong-password') {
+                          await showErrorDialog(context,
+                              'wrong password entered . please check and try again');
+                        } else {
+                          await showErrorDialog(context, 'Error : ${e.code}');
+                        }
+                      } catch (e) {
+                        await showErrorDialog(context, e.toString());
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                        shape: BeveledRectangleBorder(),
+                        backgroundColor: Colors.blueAccent,
+                        minimumSize: Size.fromHeight(50)),
+                    child: const Text(
+                      'Login',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.black),
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ]),

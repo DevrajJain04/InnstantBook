@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:innstantbook/constants/enums.dart';
 import 'package:innstantbook/utilities/fetch_data.dart';
 import 'package:innstantbook/views/hotel_search.dart';
 import 'package:innstantbook/views/explore.dart';
@@ -8,11 +9,10 @@ class NavBar extends StatefulWidget {
   const NavBar({super.key});
 
   @override
-  State<NavBar> createState() => _NavBarState();
+  State<NavBar> createState() => NavBarState();
 }
 
-class _NavBarState extends State<NavBar> {
-  int currentPageIndex = 0;
+class NavBarState extends State<NavBar> {
   final routes = [
     const HotelSearch(),
     const ExplorePage(),
@@ -31,7 +31,7 @@ class _NavBarState extends State<NavBar> {
       body: routes[currentPageIndex],
       bottomNavigationBar: NavigationBarTheme(
         data: NavigationBarThemeData(
-          indicatorColor: Colors.purple[400],
+          indicatorColor: Colors.blue[200],
         ),
         child: NavigationBar(
           elevation: 10,

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:innstantbook/utilities/fetch_data.dart';
 import 'package:innstantbook/utilities/navbar.dart';
 import 'package:innstantbook/views/login_view.dart';
 import 'package:innstantbook/constants/routes.dart';
@@ -17,11 +18,7 @@ void main() {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(255, 22, 9, 206)),
-        useMaterial3: true,
-      ),
+      theme: ThemeData.dark(),
       home: const HomePage(),
       routes: {
         homePage: (context) => const HomePage(),
@@ -30,8 +27,8 @@ void main() {
         mainRoute: (context) => const ExplorePage(),
         verifyEmailRoute: (context) => const VerifyEmailView(),
         profilePage: (context) => ProfilePageView(),
-        navbar:(context) => const NavBar(),
-        booking :(context) => const PaymentWall()
+        navbar: (context) => const NavBar(),
+        booking: (context) => const PaymentWall()
       },
     ),
   );
@@ -52,6 +49,7 @@ class HomePage extends StatelessWidget {
               final user = FirebaseAuth.instance.currentUser;
               if (user != null) {
                 if (user.emailVerified) {
+                  fetchData();
                   return const NavBar();
                 } else {
                   return const VerifyEmailView();
