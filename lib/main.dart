@@ -9,6 +9,7 @@ import 'package:innstantbook/views/explore.dart';
 import 'package:innstantbook/views/payment_wall.dart';
 import 'package:innstantbook/views/profile_page.dart';
 import 'package:innstantbook/views/register_view.dart';
+import 'package:innstantbook/views/splash_screen.dart';
 import 'package:innstantbook/views/verifyemail_view.dart';
 import 'firebase_options.dart';
 
@@ -55,7 +56,7 @@ class HomePage extends StatelessWidget {
                   return const VerifyEmailView();
                 }
               } else {
-                return const LoginView();
+                return const SplashScreen();
               }
             default:
               return const CircularProgressIndicator();

@@ -24,6 +24,7 @@ class _HotelDescState extends State<HotelDesc> {
     fetchData();
   }
 
+  bool readLines = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,19 +42,28 @@ class _HotelDescState extends State<HotelDesc> {
             ),
             Card(
               elevation: 5,
-              child: Text(
-                'Description:\n \t ${widget.description}',
-                textAlign: TextAlign.left,
-                style: const TextStyle(
-                  fontSize: 12,
+              child: Wrap(children: [
+                Text(
+                  'Description:\n \t ${widget.description}',
+                  textAlign: TextAlign.left,
+                  style: const TextStyle(
+                    fontSize: 12,
+                  ),
+                  maxLines: readLines ? 12 : 5,
                 ),
-              ),
+                Container(
+                  alignment: Alignment.bottomRight,
+                  child: InkWell(
+                    child: Text(readLines ? "Read More" : "Read Less"),
+                    onTap: () {
+                      setState(() {
+                        readLines = !readLines;
+                      });
+                    },
+                  ),
+                )
+              ]),
             ),
-            // const Text("select number of rooms you want to book",
-            //     style: TextStyle(
-            //       fontWeight: FontWeight.bold,
-            //       fontSize: 24,
-            //     )),
             Card(
               elevation: 5,
               child: Row(

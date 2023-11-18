@@ -14,7 +14,7 @@ class _HotelSearchState extends State<HotelSearch> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Explore Luxurious Hotels And Inns"),
+        title: const Text("Explore Luxurious Hotels And Inns"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -23,17 +23,17 @@ class _HotelSearchState extends State<HotelSearch> {
               padding: const EdgeInsets.all(8.0),
               child: TextField(
                 decoration: InputDecoration(
-                    label: Text('Enter Your City'),
+                    label: const Text('Enter Your City'),
                     border: OutlineInputBorder(
                         gapPadding: 5, borderRadius: BorderRadius.circular(8))),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    const SizedBox(
+                    SizedBox(
                       child: Icon(
                         Icons.location_pin,
                         color: Colors.red,
@@ -51,17 +51,14 @@ class _HotelSearchState extends State<HotelSearch> {
                 ),
               ),
             ),
-            SizedBox(
-              child: Card(
-                elevation: 0.0,
-                child: Text(
-                  'Top Recommended Hotels ',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                  textAlign: TextAlign.center,
+            const SizedBox(
+              child: Text(
+                'Top Recommended Hotels ',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20,
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
             SizedBox(

@@ -13,6 +13,7 @@ class NavBar extends StatefulWidget {
 }
 
 class NavBarState extends State<NavBar> {
+  PageController pc = PageController(initialPage: 0);
   final routes = [
     const HotelSearch(),
     const ExplorePage(),
@@ -28,7 +29,15 @@ class NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: routes[currentPageIndex],
+      body: PageView(
+        controller: pc,
+        onPageChanged: (value) {
+          setState(() {
+            currentPageIndex = value;
+          });
+        },
+        children: routes,
+      ),
       bottomNavigationBar: NavigationBarTheme(
         data: NavigationBarThemeData(
           indicatorColor: Colors.blue[200],
@@ -42,9 +51,11 @@ class NavBarState extends State<NavBar> {
           ],
           selectedIndex: currentPageIndex,
           onDestinationSelected: (index) {
-            setState(() {
-              currentPageIndex = index;
-            });
+            pc.animateToPage(
+              index,
+              duration: Duration(milliseconds: 250),
+              curve: Curves.easeIn,
+            );
           },
         ),
       ),
