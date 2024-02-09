@@ -76,16 +76,18 @@ class ExplorePageState extends State<ExplorePage> {
         child: ListView.builder(
           shrinkWrap: true,
           scrollDirection: Axis.vertical,
-          itemCount: hotels.length,
+          itemCount: hotel.results?.data?.length,
           itemBuilder: (context, index) {
             var hotelThumbnail =
-                hotels[index]['photo']['images']['thumbnail']['url'];
+                hotel.results?.data?[index].photo?.images?.thumbnail?.url ?? "";
             return ListTile(
               leading: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image(image: CachedNetworkImageProvider(hotelThumbnail),),
+                child: Image(
+                  image: CachedNetworkImageProvider(hotelThumbnail),
+                ),
               ),
-              title: Text(hotels[index]['name']),
+              title: Text(hotel.results?.data?[index].name ?? ""),
               subtitle: const Row(
                 children: [
                   Icon(Icons.star),
@@ -95,10 +97,9 @@ class ExplorePageState extends State<ExplorePage> {
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => HotelDesc(
-                          name: hotels[index]['name'],
-                          image: hotels[index]['photo']['images']['large']
-                              ['url'],
-                          description: hotels[index]['description'],
+                          name: hotel.results?.data?[index].name ?? "",
+                          image: hotel.results?.data?[index].photo?.images?.large?.url ?? "",
+                          description: hotel.results?.data?[index].description ?? "",
                         )));
               },
             );

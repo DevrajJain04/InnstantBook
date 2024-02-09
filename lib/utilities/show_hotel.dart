@@ -1,18 +1,24 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:innstantbook/constants/hotel_list.dart';
+import 'package:innstantbook/model/model.dart';
 import 'package:innstantbook/views/hotel_detail_view.dart';
 
 class ShowHotel extends StatefulWidget {
-  final int index;
-  const ShowHotel({super.key, required this.index});
+  final String name;
+  final Images? imagedetail;
+  final String description;
+  const ShowHotel({
+    super.key,
+    required this.name,
+    required this.imagedetail,
+    required this.description,
+  });
 
   @override
   State<ShowHotel> createState() => _ShowHotelState();
 }
 
 class _ShowHotelState extends State<ShowHotel> {
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,9 +29,9 @@ class _ShowHotelState extends State<ShowHotel> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => HotelDesc(
-                name: hotels[widget.index]['name'],
-                image: hotels[widget.index]['photo']['images']['large']['url'],
-                description: hotels[widget.index]['description'],
+                name: widget.name,
+                image: widget.imagedetail?.large?.url ?? "",
+                description: widget.description,
               ),
             ),
           );
@@ -33,17 +39,22 @@ class _ShowHotelState extends State<ShowHotel> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Text(
-                "${hotels[widget.index]['name']}\n",
-                style: const TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w300,
+              SizedBox(
+                width: 300,
+                child: Text(
+                  "${widget.name}\n",
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w300,
+                  ),
                 ),
               ),
-              Image(image: CachedNetworkImageProvider(hotels[widget.index]['photo']['images']['medium']['url'])),
+              Image(
+                image: CachedNetworkImageProvider(
+                    widget.imagedetail?.large?.url ?? ""),
+              ),
             ],
           ),
-          
         ),
       )),
     );

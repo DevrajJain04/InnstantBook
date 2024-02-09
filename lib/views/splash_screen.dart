@@ -14,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     _splash();
   }
-
+  
   _splash() async {
     await Future.delayed(const Duration(milliseconds: 1500),(){});
     Navigator.pushReplacementNamed(context, loginRoute);

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:innstantbook/constants/hotel_list.dart';
+import 'package:innstantbook/utilities/fetch_data.dart';
 import 'package:innstantbook/utilities/show_hotel.dart';
+
+import '../constants/routes.dart';
 
 class HotelSearch extends StatefulWidget {
   const HotelSearch({super.key});
@@ -10,6 +12,13 @@ class HotelSearch extends StatefulWidget {
 }
 
 class _HotelSearchState extends State<HotelSearch> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,10 +31,15 @@ class _HotelSearchState extends State<HotelSearch> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
+                onTap: () {
+                  Navigator.pushNamed(context, searchpage);
+                },
                 decoration: InputDecoration(
-                    label: const Text('Enter Your City'),
-                    border: OutlineInputBorder(
-                        gapPadding: 5, borderRadius: BorderRadius.circular(8))),
+                  label: const Text('Enter Your City Or Hotelname'),
+                  border: OutlineInputBorder(
+                      gapPadding: 5, borderRadius: BorderRadius.circular(8)),
+                  suffixIcon: const Icon(Icons.search),
+                ),
               ),
             ),
             const SizedBox(
@@ -61,16 +75,32 @@ class _HotelSearchState extends State<HotelSearch> {
                 textAlign: TextAlign.center,
               ),
             ),
-            SizedBox(
-              height: 350,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: hotels.length,
-                itemBuilder: (context, index) {
-                  return ShowHotel(index: index);
-                },
-              ),
-            )
+            FutureBuilder(
+                future: fetchData(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return SizedBox(
+                      height: 350,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: snapshot.data?.results?.data?.length,
+                        itemBuilder: (context, index) {
+                          return ShowHotel(
+                            name:
+                                snapshot.data?.results?.data?[index].name ?? "",
+                            imagedetail: snapshot
+                                .data?.results?.data?[index].photo?.images,
+                            description: snapshot
+                                    .data?.results?.data?[index].description ??
+                                "",
+                          );
+                        },
+                      ),
+                    );
+                  } else {
+                    return CircularProgressIndicator();
+                  }
+                })
           ],
         ),
       ),

@@ -54,7 +54,7 @@ class _HotelDescState extends State<HotelDesc> {
                 Container(
                   alignment: Alignment.bottomRight,
                   child: InkWell(
-                    child: Text(readLines ? "Read More" : "Read Less"),
+                    child: Text(readLines ? "Read Less" : "Read More"),
                     onTap: () {
                       setState(() {
                         readLines = !readLines;

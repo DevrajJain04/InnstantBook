@@ -6,3 +6,4 @@ const verifyEmailRoute = '/verify-email/';
 const profilePage = '/profile/';
 const navbar = '/navBar/';
 const booking = '/booking/';
+const searchpage = '/search/';

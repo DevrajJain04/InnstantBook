@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:innstantbook/constants/enums.dart';
-import 'package:innstantbook/utilities/fetch_data.dart';
 import 'package:innstantbook/views/hotel_search.dart';
 import 'package:innstantbook/views/explore.dart';
 import 'package:innstantbook/views/profile_page.dart';
@@ -13,18 +12,18 @@ class NavBar extends StatefulWidget {
 }
 
 class NavBarState extends State<NavBar> {
-  PageController pc = PageController(initialPage: 0);
+  PageController pc = PageController(initialPage: 1);
   final routes = [
     const HotelSearch(),
     const ExplorePage(),
     ProfilePageView(),
   ];
 
-  @override
-  void initState() {
-    super.initState();
-    fetchData();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   fetchData();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +52,7 @@ class NavBarState extends State<NavBar> {
           onDestinationSelected: (index) {
             pc.animateToPage(
               index,
-              duration: Duration(milliseconds: 250),
+              duration: const Duration(milliseconds: 250),
               curve: Curves.easeIn,
             );
           },
