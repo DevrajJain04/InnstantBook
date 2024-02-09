@@ -4,13 +4,14 @@ import 'package:innstantbook/constants/routes.dart';
 import 'package:innstantbook/utilities/fetch_data.dart';
 
 class HotelDesc extends StatefulWidget {
-  final String name, image, description;
+  final String name, image, description, price;
 
   const HotelDesc(
       {super.key,
       required this.name,
       required this.image,
-      required this.description});
+      required this.description,
+      required this.price});
 
   @override
   State<HotelDesc> createState() => _HotelDescState();
@@ -76,7 +77,7 @@ class _HotelDescState extends State<HotelDesc> {
                     width: 10,
                   ),
                   DropdownButton<NumberOfRooms>(
-                    padding: EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(8),
                     borderRadius: BorderRadius.circular(10),
                     enableFeedback: true,
                     isDense: false,
@@ -113,6 +114,19 @@ class _HotelDescState extends State<HotelDesc> {
               },
               child: const Text('Book'),
             ),
+            Card(
+              elevation: 5,
+              child: Wrap(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Price:\n \t ${widget.price}',
+                    ),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),

@@ -3,6 +3,7 @@ import 'package:innstantbook/constants/enums.dart';
 import 'package:innstantbook/views/hotel_search.dart';
 import 'package:innstantbook/views/explore.dart';
 import 'package:innstantbook/views/profile_page.dart';
+import 'package:innstantbook/views/search_page.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -14,6 +15,7 @@ class NavBar extends StatefulWidget {
 class NavBarState extends State<NavBar> {
   PageController pc = PageController(initialPage: 1);
   final routes = [
+    const SearchPage(),
     const HotelSearch(),
     const ExplorePage(),
     ProfilePageView(),
@@ -44,9 +46,10 @@ class NavBarState extends State<NavBar> {
         child: NavigationBar(
           elevation: 10,
           destinations: const [
-            NavigationDestination(icon: Icon(Icons.hotel), label: 'hotels'),
-            NavigationDestination(icon: Icon(Icons.explore), label: 'explore'),
-            NavigationDestination(icon: Icon(Icons.person), label: 'profile'),
+            NavigationDestination(icon: Icon(Icons.search), label: 'Search'),
+            NavigationDestination(icon: Icon(Icons.hotel), label: 'Hotels'),
+            NavigationDestination(icon: Icon(Icons.explore), label: 'Explore'),
+            NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
           ],
           selectedIndex: currentPageIndex,
           onDestinationSelected: (index) {

@@ -80,29 +80,38 @@ class ExplorePageState extends State<ExplorePage> {
           itemBuilder: (context, index) {
             var hotelThumbnail =
                 hotel.results?.data?[index].photo?.images?.thumbnail?.url ?? "";
-            return ListTile(
-              leading: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image(
-                  image: CachedNetworkImageProvider(hotelThumbnail),
+
+            if (hotelThumbnail == "") {
+              return CircularProgressIndicator();
+            } else {
+              return ListTile(
+                leading: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image(
+                    image: CachedNetworkImageProvider(hotelThumbnail),
+                  ),
                 ),
-              ),
-              title: Text(hotel.results?.data?[index].name ?? ""),
-              subtitle: const Row(
-                children: [
-                  Icon(Icons.star),
-                  Text('Book Now'),
-                ],
-              ),
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => HotelDesc(
-                          name: hotel.results?.data?[index].name ?? "",
-                          image: hotel.results?.data?[index].photo?.images?.large?.url ?? "",
-                          description: hotel.results?.data?[index].description ?? "",
-                        )));
-              },
-            );
+                title: Text(hotel.results?.data?[index].name ?? ""),
+                subtitle: const Row(
+                  children: [
+                    Icon(Icons.star),
+                    Text('Book Now'),
+                  ],
+                ),
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => HotelDesc(
+                            name: hotel.results?.data?[index].name ?? "",
+                            image: hotel.results?.data?[index].photo?.images
+                                    ?.large?.url ??
+                                "",
+                            description:
+                                hotel.results?.data?[index].description ?? "",
+                            price:hotel.results?.data?[index].price ?? "",
+                          )));
+                },
+              );
+            }
           },
         ),
       ),

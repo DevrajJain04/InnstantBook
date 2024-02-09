@@ -28,12 +28,13 @@ class _LoginViewState extends State<LoginView> {
     super.dispose();
   }
 
+  late var obscureness = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('login'),
-      // ),
+      appBar: AppBar(
+        title: const Text('login'),
+      ),
       body: Stack(alignment: Alignment.center, children: [
         Image.asset(
           'assets/Images/1.jpg',
@@ -62,15 +63,23 @@ class _LoginViewState extends State<LoginView> {
               height: 5,
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(12.0),
               child: TextField(
                 controller: _password,
-                obscureText: true,
+                obscureText: obscureness,
                 enableSuggestions: false,
                 autocorrect: false,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
+                  suffix: GestureDetector(
+                    child: const Icon(Icons.remove_red_eye),
+                    onTap: () {
+                      setState(() {
+                        obscureness = false;
+                      });
+                    },
+                  ),
                   labelText: 'Password',
-                  enabledBorder: OutlineInputBorder(
+                  enabledBorder: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
                 ),
@@ -89,7 +98,7 @@ class _LoginViewState extends State<LoginView> {
                     TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
               ),
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -97,7 +106,7 @@ class _LoginViewState extends State<LoginView> {
                   alignment: Alignment.bottomCenter,
                   child: ElevatedButton(
                     onPressed: () async {
-                      final email = _email.text;
+                      final email = _email.text.trim().toLowerCase();
                       final password = _password.text;
                       try {
                         await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -122,9 +131,9 @@ class _LoginViewState extends State<LoginView> {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                        shape: BeveledRectangleBorder(),
+                        shape: const BeveledRectangleBorder(),
                         backgroundColor: Colors.blueAccent,
-                        minimumSize: Size.fromHeight(50)),
+                        minimumSize: const Size.fromHeight(50)),
                     child: const Text(
                       'Login',
                       style: TextStyle(

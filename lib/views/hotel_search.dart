@@ -85,14 +85,20 @@ class _HotelSearchState extends State<HotelSearch> {
                         scrollDirection: Axis.horizontal,
                         itemCount: snapshot.data?.results?.data?.length,
                         itemBuilder: (context, index) {
-                          return ShowHotel(
-                            name:
-                                snapshot.data?.results?.data?[index].name ?? "",
-                            imagedetail: snapshot
-                                .data?.results?.data?[index].photo?.images,
-                            description: snapshot
-                                    .data?.results?.data?[index].description ??
-                                "",
+                          return SizedBox(
+                            width: 300,
+                            child: ShowHotel(
+                              name: snapshot.data?.results?.data?[index].name ??
+                                  "",
+                              imagedetail: snapshot
+                                  .data?.results?.data?[index].photo?.images,
+                              description: snapshot.data?.results?.data?[index]
+                                      .description ??
+                                  "",
+                              price:
+                                  snapshot.data?.results?.data?[index].price ??
+                                      "",
+                            ),
                           );
                         },
                       ),

@@ -28,6 +28,7 @@ class _RegisterViewState extends State<RegisterView> {
     super.dispose();
   }
 
+  late var obscureness = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,27 +37,43 @@ class _RegisterViewState extends State<RegisterView> {
       ),
       body: Column(
         children: [
-          TextField(
-            controller: _email,
-            enableSuggestions: false,
-            autocorrect: false,
-            keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(
-              labelText: 'Email',
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: TextField(
+              controller: _email,
+              enableSuggestions: false,
+              autocorrect: false,
+              keyboardType: TextInputType.emailAddress,
+              decoration: const InputDecoration(
+                labelText: 'Email',
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                ),
               ),
             ),
           ),
-          TextField(
-            controller: _password,
-            obscureText: true,
-            enableSuggestions: false,
-            autocorrect: false,
-            decoration: const InputDecoration(
-              labelText: 'Password',
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
+          const SizedBox(
+            height: 5,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: TextField(
+              controller: _password,
+              obscureText: obscureness,
+              enableSuggestions: false,
+              autocorrect: false,
+              decoration: InputDecoration(
+                suffix: GestureDetector(
+                    child: Icon(Icons.remove_red_eye),
+                    onTap: () {
+                      setState(() {
+                        obscureness = false;
+                      });
+                    }),
+                labelText: 'Password',
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                ),
               ),
             ),
           ),
@@ -71,7 +88,7 @@ class _RegisterViewState extends State<RegisterView> {
                 );
                 final user = FirebaseAuth.instance.currentUser;
                 await user?.sendEmailVerification();
-                Navigator.pushNamed(context,verifyEmailRoute);
+                Navigator.pushNamed(context, verifyEmailRoute);
               } on FirebaseAuthException catch (e) {
                 if (e.code == 'weak-password') {
                   await showErrorDialog(

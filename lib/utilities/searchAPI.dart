@@ -7,6 +7,7 @@ class WorldwideHotelsApi {
   final String baseUrl = 'https://worldwide-hotels.p.rapidapi.com/';
 
   Future<HotelData> searchHotels(String query) async {
+    query=query.toLowerCase();
     final response = await http.post(
       Uri.parse('$baseUrl/search?query=$query'),
     );

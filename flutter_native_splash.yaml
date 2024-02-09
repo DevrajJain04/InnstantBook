@@ -1,4 +1,4 @@
-# flutter_native_splash:
-#   image: assets/logo.png
-#   color: "#FFFFFF"
-#   fill: true
+flutter_native_splash:
+  image: assets/logo.png
+  color: "#FFFFFF"
+  fill: true

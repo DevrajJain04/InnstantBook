@@ -10,6 +10,7 @@ import 'package:innstantbook/views/profile_page.dart';
 import 'package:innstantbook/views/register_view.dart';
 import 'package:innstantbook/views/search_page.dart';
 import 'package:innstantbook/views/splash_screen.dart';
+// import 'package:innstantbook/views/splash_screen.dart';
 import 'package:innstantbook/views/verifyemail_view.dart';
 import 'firebase_options.dart';
 
@@ -30,7 +31,7 @@ void main() {
         profilePage: (context) => ProfilePageView(),
         navbar: (context) => const NavBar(),
         booking: (context) => const PaymentWall(),
-        searchpage:(context) => const SearchPage(),
+        searchpage: (context) => const SearchPage(),
       },
     ),
   );
@@ -56,10 +57,10 @@ class HomePage extends StatelessWidget {
                   return const VerifyEmailView();
                 }
               } else {
-                return const SplashScreen();
+                return const LoginView();
               }
             default:
-              return const CircularProgressIndicator();
+              return const SplashScreen();
           }
         });
   }

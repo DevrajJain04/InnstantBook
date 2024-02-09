@@ -7,11 +7,13 @@ class ShowHotel extends StatefulWidget {
   final String name;
   final Images? imagedetail;
   final String description;
+  final String price;
   const ShowHotel({
     super.key,
     required this.name,
     required this.imagedetail,
     required this.description,
+    required this.price,
   });
 
   @override
@@ -32,6 +34,7 @@ class _ShowHotelState extends State<ShowHotel> {
                 name: widget.name,
                 image: widget.imagedetail?.large?.url ?? "",
                 description: widget.description,
+                price: widget.price,
               ),
             ),
           );
