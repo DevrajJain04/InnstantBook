@@ -1,3 +1,6 @@
+// import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:innstantbook/constants/enums.dart';
 import 'package:innstantbook/constants/routes.dart';
@@ -26,6 +29,7 @@ class _HotelDescState extends State<HotelDesc> {
   }
 
   bool readLines = false;
+  bool faved = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,6 +55,20 @@ class _HotelDescState extends State<HotelDesc> {
                     fontSize: 12,
                   ),
                   maxLines: readLines ? 12 : 5,
+                ),
+                TextButton.icon(
+                  onPressed: () {
+                    favourite();
+                    setState(() {
+                      faved = !faved;
+                    });
+                  },
+                  icon: Icon(Icons.favorite,
+                      color: faved ? Colors.red : Colors.white),
+                  label: const Text(""),
+                  style: const ButtonStyle(
+                    elevation: MaterialStatePropertyAll(10),
+                  ),
                 ),
                 Container(
                   alignment: Alignment.bottomRight,
@@ -110,6 +128,7 @@ class _HotelDescState extends State<HotelDesc> {
               elevation: 5,
               backgroundColor: Colors.purple[300],
               onPressed: () {
+                // notify();
                 Navigator.of(context).pushNamed(booking);
               },
               child: const Text('Book'),
@@ -132,4 +151,23 @@ class _HotelDescState extends State<HotelDesc> {
       ),
     );
   }
+
+  void favourite() {
+    FirebaseFirestore.instance.collection("Favourites").doc(widget.name).set({
+      "Title": widget.name,
+      "Text": widget.description,
+      // "Image": widget.image
+    }).then((value) => print("data daaldiya le !!!!!!!!!!!!!!!!!!!!!!!!"));
+  }
 }
+
+// void notify() async {
+//   await AwesomeNotifications().createNotification(
+//       content: NotificationContent(
+//     id: 1,
+//     channelKey: "key1",
+//     title: 'Booking in progress...',
+//     body: 'Booking in progress...',
+//   ));
+// }
+

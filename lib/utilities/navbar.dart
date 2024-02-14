@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:innstantbook/constants/enums.dart';
+import 'package:innstantbook/views/favourites.dart';
 import 'package:innstantbook/views/hotel_search.dart';
 import 'package:innstantbook/views/explore.dart';
 import 'package:innstantbook/views/profile_page.dart';
@@ -19,13 +20,8 @@ class NavBarState extends State<NavBar> {
     const HotelSearch(),
     const ExplorePage(),
     ProfilePageView(),
+    const Favourites(),
   ];
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   fetchData();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +46,8 @@ class NavBarState extends State<NavBar> {
             NavigationDestination(icon: Icon(Icons.hotel), label: 'Hotels'),
             NavigationDestination(icon: Icon(Icons.explore), label: 'Explore'),
             NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
+            NavigationDestination(
+                icon: Icon(Icons.favorite), label: 'Favourites'),
           ],
           selectedIndex: currentPageIndex,
           onDestinationSelected: (index) {

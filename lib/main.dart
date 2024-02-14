@@ -1,3 +1,5 @@
+// import 'package:awesome_notifications/awesome_notifications.dart';
+// import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +18,14 @@ import 'firebase_options.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  // AwesomeNotifications().initialize(null, [
+  //   NotificationChannel(
+  //     channelKey: 'key1',
+  //     channelName: 'InnstantBook',
+  //     channelDescription: 'Booking Notification',
+  //     defaultColor: Colors.purple[200],
+  //   playSound: true)
+  // ]);
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,

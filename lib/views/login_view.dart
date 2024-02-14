@@ -37,7 +37,7 @@ class _LoginViewState extends State<LoginView> {
       ),
       body: Stack(alignment: Alignment.center, children: [
         Image.asset(
-          'assets/Images/1.jpg',
+          'assets/Images/loginphotu.jpg',
           width: double.infinity,
           height: double.infinity,
           fit: BoxFit.cover,
