@@ -78,7 +78,7 @@ class SearchPageState extends State<SearchPage> {
   // List<Map<String, dynamic>> _searchResults = [];
 
   Future<void> searchByName(String name) async {
-    final String apiKey = apikey1; // Replace with your RapidAPI key
+    const String apiKey = apikey1; // Replace with your RapidAPI key
     final String apiUrl =
         "https://worldwide-hotels.p.rapidapi.com/search?location_id=45963&language=English&currency=USD&offset=0&name=$name";
 

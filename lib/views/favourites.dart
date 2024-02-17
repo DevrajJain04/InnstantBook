@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:innstantbook/model/model.dart';
+import 'package:innstantbook/utilities/show_hotel.dart';
 
 class Favourites extends StatefulWidget {
   const Favourites({super.key});
@@ -39,7 +41,7 @@ class FavouritesState extends State<Favourites> {
   }
 
   bool readLines = false;
-  bool faved = false;
+  
   Widget _buildBody() {
     // Handle cases: no data, loading, error, or data available
     return StreamBuilder<QuerySnapshot<Object?>>(
@@ -55,48 +57,7 @@ class FavouritesState extends State<Favourites> {
         return ListView.builder(
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (context, index) {
-            return ListTile(
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    snapshot.data!.docs[index]['Title'],
-                    style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 8.0),
-                  Text(
-                    snapshot.data!.docs[index]['Text'],
-                    maxLines: readLines ? 12 : 5,
-                  ),
-                  Container(
-                    alignment: Alignment.bottomRight,
-                    child: InkWell(
-                      child: Text(readLines ? "Read Less" : "Read More"),
-                      onTap: () {
-                        setState(() {
-                          readLines = !readLines;
-                        });
-                      },
-                    ),
-                  ),
-                  TextButton.icon(
-                    onPressed: () {
-                      FirebaseFirestore.instance.collection('Favourites').doc(snapshot.data!.docs[index]['Title']).delete();
-                      setState(() {
-                        faved = !faved;
-                      });
-                    },
-                    icon: Icon(Icons.favorite,
-                        color: faved ? Colors.red : Colors.white),
-                    label: const Text(""),
-                    style: const ButtonStyle(
-                      elevation: MaterialStatePropertyAll(10),
-                    ),
-                  ),
-                ],
-              ),
-            );
+            return ShowHotel(name: snapshot.data!.docs[index]['Title'], imagedetail: Images(), description: snapshot.data!.docs[index]['Text'], price: "");
           },
         );
       },

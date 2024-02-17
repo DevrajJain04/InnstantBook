@@ -18,14 +18,14 @@ import 'firebase_options.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  // AwesomeNotifications().initialize(null, [
-  //   NotificationChannel(
-  //     channelKey: 'key1',
-  //     channelName: 'InnstantBook',
-  //     channelDescription: 'Booking Notification',
-  //     defaultColor: Colors.purple[200],
-  //   playSound: true)
-  // ]);
+  AwesomeNotifications().initialize(null, [
+    NotificationChannel(
+      channelKey: 'key1',
+      channelName: 'InnstantBook',
+      channelDescription: 'Booking Notification',
+      defaultColor: Colors.purple[200],
+    playSound: true)
+  ]);
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,

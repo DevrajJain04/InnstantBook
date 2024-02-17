@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:innstantbook/constants/enums.dart';
 import 'package:innstantbook/model/model.dart';
 import 'package:innstantbook/views/hotel_detail_view.dart';
 
@@ -55,7 +57,20 @@ class _ShowHotelState extends State<ShowHotel> {
               Image(
                 image: CachedNetworkImageProvider(
                     widget.imagedetail?.large?.url ?? ""),
-              ),
+              ),TextButton.icon(
+                    onPressed: () {
+                      FirebaseFirestore.instance.collection('Favourites').doc(widget.name).delete();
+                      setState(() {
+                        faved = !faved;
+                      });
+                    },
+                    icon: Icon(Icons.favorite,
+                        color: faved ? Colors.red : Colors.white),
+                    label: const Text(""),
+                    style: const ButtonStyle(
+                      elevation: MaterialStatePropertyAll(10),
+                    ),
+                  ),
             ],
           ),
         ),

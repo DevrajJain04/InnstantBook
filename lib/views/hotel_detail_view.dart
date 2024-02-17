@@ -128,7 +128,7 @@ class _HotelDescState extends State<HotelDesc> {
               elevation: 5,
               backgroundColor: Colors.purple[300],
               onPressed: () {
-                // notify();
+                notify();
                 Navigator.of(context).pushNamed(booking);
               },
               child: const Text('Book'),
@@ -161,13 +161,13 @@ class _HotelDescState extends State<HotelDesc> {
   }
 }
 
-// void notify() async {
-//   await AwesomeNotifications().createNotification(
-//       content: NotificationContent(
-//     id: 1,
-//     channelKey: "key1",
-//     title: 'Booking in progress...',
-//     body: 'Booking in progress...',
-//   ));
-// }
+void notify() async {
+  await AwesomeNotifications().createNotification(
+      content: NotificationContent(
+    id: 1,
+    channelKey: "key1",
+    title: 'Booking in progress...',
+    body: 'Booking in progress...',
+  ));
+}
 
